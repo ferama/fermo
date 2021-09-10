@@ -19,9 +19,9 @@ RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux
 RUN mv rospo /usr/local/bin
 
 # hard fixes
-RUN \
-    sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd \
-    && ln -s /usr/local/bin/docker /usr/bin/docker
+# RUN \
+#     sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd \
+#     && ln -s /usr/local/bin/docker /usr/bin/docker
 
 COPY entrypoint.sh /
 
