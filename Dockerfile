@@ -20,7 +20,7 @@ RUN mv rospo /usr/local/bin
 
 # hard fixes
 RUN \
-    sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd \
+    sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd
 
 COPY entrypoint.sh /
 
