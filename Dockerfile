@@ -14,14 +14,14 @@ RUN cd /tmp \
     && ibmcloud plugin install kubernetes-service \
     && ibmcloud plugin install container-registry
 
-# hard fixes
-RUN \
-    usermod --shell /bin/bash root \
-    ln -s /usr/local/bin/docker /usr/bin/docker
-
 # add rospo
 RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
 RUN mv rospo /usr/local/bin
+
+# hard fixes
+RUN \
+    sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd \
+    && ln -s /usr/local/bin/docker /usr/bin/docker
 
 COPY entrypoint.sh /
 
