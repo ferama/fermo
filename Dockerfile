@@ -1,10 +1,10 @@
-FROM docker:dind
+FROM ubuntu:latest
 
-RUN apk update && apk add \
-    curl \
+RUN apt update && apt install -y \
     vim \
-    bash
-
+    curl \
+    tini
+ 
 ENV IBMCLOUD_CLI=2.0.3
 # add ibmcloud utility
 RUN cd /tmp \
@@ -17,10 +17,6 @@ RUN cd /tmp \
 # add rospo
 RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
 RUN mv rospo /usr/local/bin
-
-# hard fixes
-RUN \
-    sed -i 's/\/bin\/ash/\/bin\/bash/g' /etc/passwd
 
 COPY entrypoint.sh /
 
