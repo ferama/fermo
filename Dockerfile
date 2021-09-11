@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-ENV DIND_TAG=20.10.8-dind
 ENV IBMCLOUD_CLI=2.0.3
+COPY --from=docker:20.10.8-dind /usr/local/bin/ /usr/local/bin/
 
 RUN set -eux \
 	apt-get update \
@@ -16,8 +16,6 @@ RUN set -eux \
 
 ENV DOCKER_TLS_CERTDIR=/certs
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
-
-COPY --from=docker:${DIND_TAG} /usr/local/bin/ /usr/local/bin/
 
 # add ibmcloud utility
 RUN cd /tmp \
