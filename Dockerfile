@@ -1,10 +1,20 @@
 FROM ubuntu:latest
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		ca-certificates \
+		iptables \
+		openssl \
+		pigz \
+		xz-utils \
+        vim \
+        curl
 
-RUN apt update && apt install -y \
-    vim \
-    curl \
-    tini
- 
+ENV DOCKER_TLS_CERTDIR=/certs
+RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
+
+COPY --from=docker:20.10.5-dind /usr/local/bin/ /usr/local/bin/
+
 ENV IBMCLOUD_CLI=2.0.3
 # add ibmcloud utility
 RUN cd /tmp \
@@ -18,6 +28,7 @@ RUN cd /tmp \
 RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
 RUN mv rospo /usr/local/bin
 
-COPY entrypoint.sh /
+VOLUME /var/lib/docker
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["dockerd-entrypoint.sh"]
+CMD []
