@@ -1,6 +1,10 @@
 FROM ubuntu:latest
-RUN set -eux; \
-	apt-get update; \
+
+ENV DIND_TAG=20.10.8-dind
+ENV IBMCLOUD_CLI=2.0.3
+
+RUN set -eux \
+	apt-get update \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
 		iptables \
@@ -13,9 +17,8 @@ RUN set -eux; \
 ENV DOCKER_TLS_CERTDIR=/certs
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
 
-COPY --from=docker:20.10.5-dind /usr/local/bin/ /usr/local/bin/
+COPY --from=docker:${DIND_TAG} /usr/local/bin/ /usr/local/bin/
 
-ENV IBMCLOUD_CLI=2.0.3
 # add ibmcloud utility
 RUN cd /tmp \
     && curl -fL https://download.clis.cloud.ibm.com/ibm-cloud-cli/${IBMCLOUD_CLI}/binaries/IBM_Cloud_CLI_${IBMCLOUD_CLI}_linux_amd64.tgz -o IBM_Cloud_CLI_${IBMCLOUD_CLI}_linux_amd64.tgz \
