@@ -22,7 +22,7 @@ RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
 
 VOLUME /var/lib/docker
 
-COPY ./scripts/bootstrap.sh /bootstrap.sh
+COPY ./scripts/* /
 RUN /bootstrap.sh && rm /bootstrap.sh
 
-ENTRYPOINT ["dockerd-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
