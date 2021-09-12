@@ -41,9 +41,11 @@ make_default_config() {
         cat <<EOF > ./config/rospo.yaml
 sshd:
     server_key: "/etc/rospo/secret/server_key"
-    authorized_keys: "https://github.com/ferama.keys"
+    authorized_keys: "https://github.com/<put_your_github_user_here>.keys"
     listen_address: ":22"
 EOF
+        echo "please review the config starter in ./config dir"
+        exit 0
     fi
 }
 
