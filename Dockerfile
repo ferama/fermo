@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 # add docker dind
 COPY --from=docker:20.10.8-dind /usr/local/bin/ /usr/local/bin/
-# add rospo
+# add rospo dev version
 COPY --from=ferama/rospo:dev /usr/local/bin/rospo /usr/local/bin/rospo
 
 RUN set -eux; \
