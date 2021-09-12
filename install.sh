@@ -38,7 +38,7 @@ $kubectl create configmap rospo-config \
     --dry-run=client -o yaml | $kubectl apply -f -
 
 # other k8s resources
-$kubectl apply -f ./k8s/crb.yaml
-$kubectl apply -f ./k8s/deployment.yaml
+$kubectl apply -f https://raw.githubusercontent.com/ferama/fermo/main/k8s/crb.yaml
+$kubectl apply -f https://raw.githubusercontent.com/ferama/fermo/main/k8s/deployment.yaml
 $kubectl rollout restart deployment/rospo
-$kubectl apply -f ./k8s/service.yaml
+$kubectl apply -f https://raw.githubusercontent.com/ferama/fermo/main/k8s/service.yaml
