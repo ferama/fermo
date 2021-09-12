@@ -34,6 +34,10 @@ RUN cd /tmp \
 # RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
 # RUN mv rospo /usr/local/bin
 
+
+COPY ./scripts/bootstrap.sh /
+RUN /bootstrap.sh
+
 VOLUME /var/lib/docker
 
 ENTRYPOINT ["dockerd-entrypoint.sh"]
