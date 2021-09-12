@@ -35,7 +35,7 @@ RUN cd /tmp \
 # RUN mv rospo /usr/local/bin
 
 
-COPY ./scripts/bootstrap.sh /
+COPY ./scripts/bootstrap.sh /bootstrap.sh
 RUN /bootstrap.sh
 
 VOLUME /var/lib/docker
