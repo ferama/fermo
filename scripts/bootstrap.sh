@@ -11,10 +11,16 @@ setup_packages() {
         sudo \
         curl \
         vim \
-        byobu
+        git \
+        byobu \
+        psmisc \
+        python3-pip \
+        openconnect \
 
     # cleanup
     rm -r /var/lib/apt/lists /var/cache/apt/archives
+
+    pip install vpn-slice
 }
 
 setup_ibmcloud() {
