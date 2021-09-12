@@ -25,9 +25,9 @@ spec:
             - -c 
             - |
               /bin/sh <<'EOF'
-              rospo /etc/rospo/rospo.yaml &
+              /usr/local/bin/dockerd-entrypoint.sh &
 
-              /usr/local/bin/dockerd-entrypoint.sh
+              runuser -l fermo -c "rospo /etc/rospo/rospo.yaml"
               EOF
           volumeMounts:
           - name: config-volume
