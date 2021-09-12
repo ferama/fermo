@@ -1,5 +1,9 @@
 FROM ubuntu:latest
+
+# add docker dind
 COPY --from=docker:20.10.8-dind /usr/local/bin/ /usr/local/bin/
+# add rospo
+COPY --from=ferama/rospo:dev /usr/local/bin/rospo /usr/local/bin/rospo
 
 RUN set -eux; \
 	apt-get update; \
@@ -25,8 +29,8 @@ RUN cd /tmp \
     && ibmcloud plugin install container-registry
 
 # add rospo
-RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
-RUN mv rospo /usr/local/bin
+# RUN curl -L https://github.com/ferama/rospo/releases/latest/download/rospo-linux-amd64 --output rospo && chmod +x rospo
+# RUN mv rospo /usr/local/bin
 
 VOLUME /var/lib/docker
 
