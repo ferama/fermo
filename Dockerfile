@@ -5,6 +5,8 @@ COPY --from=docker:20.10.8-dind /usr/local/bin/ /usr/local/bin/
 # add rospo dev version
 COPY --from=ferama/rospo:dev /usr/local/bin/rospo /usr/local/bin/rospo
 
+COPY bin/* /usr/local/bin
+
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
