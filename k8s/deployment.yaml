@@ -20,15 +20,6 @@ spec:
           securityContext:
             privileged: true
           imagePullPolicy: Always
-          command:
-            - sh
-            - -c 
-            - |
-              /bin/sh <<'EOF'
-              /usr/local/bin/dockerd-entrypoint.sh &
-
-              runuser -l fermo -c "rospo /etc/rospo/rospo.yaml"
-              EOF
           volumeMounts:
           - name: config-volume
             mountPath: /etc/rospo
