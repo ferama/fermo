@@ -1,6 +1,4 @@
-#! /bin/sh
-
-apt install sudo
+#! /bin/bash
 
 username=fermo
 password=fermo

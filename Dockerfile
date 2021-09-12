@@ -10,6 +10,7 @@ COPY bin/* /usr/local/bin
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
+        sudo \
 		ca-certificates \
 		iptables \
 		openssl \
@@ -35,10 +36,9 @@ RUN cd /tmp \
 # RUN mv rospo /usr/local/bin
 
 
-COPY ./scripts/bootstrap.sh /bootstrap.sh
-# RUN /bootstrap.sh
-
 VOLUME /var/lib/docker
 
+COPY ./scripts/bootstrap.sh /bootstrap.sh
+RUN /bootstrap.sh
+
 ENTRYPOINT ["dockerd-entrypoint.sh"]
-CMD []
