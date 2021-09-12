@@ -36,7 +36,7 @@ RUN cd /tmp \
 
 
 COPY ./scripts/bootstrap.sh /bootstrap.sh
-RUN /bootstrap.sh
+# RUN /bootstrap.sh
 
 VOLUME /var/lib/docker
 
