@@ -42,7 +42,7 @@ make_default_config() {
 sshd:
     server_key: "/etc/rospo/secret/server_key"
     authorized_keys: "https://github.com/<put_your_github_user_here>.keys"
-    listen_address: ":22"
+    listen_address: ":2222"
 EOF
         echo "please review the config starter in ./config dir"
         exit 0
