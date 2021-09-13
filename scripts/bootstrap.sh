@@ -15,12 +15,9 @@ setup_packages() {
         byobu \
         psmisc \
         python3-pip \
-        openconnect \
 
     # cleanup
     rm -r /var/lib/apt/lists /var/cache/apt/archives
-
-    pip install vpn-slice
 }
 
 setup_ibmcloud() {
@@ -34,6 +31,8 @@ setup_ibmcloud() {
 
 setup_user() {
     apt install sudo
+
+    sed -i 's/^#force_color_prompt=yes/force_color_prompt=yes/' /etc/skel/.bashrc
 
     username=fermo
     password=fermo
