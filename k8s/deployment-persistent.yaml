@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rospo
+  labels:
+    app: rospo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rospo
+  template:
+    metadata:
+      labels:
+        app: rospo
+    spec:
+      initContainers:
+        - name: fixpermissions
+          image: alpine:latest
+          command:
+            - chown 
+            - -R 
+            - 1000:1000
+            - /home/fermo
+          volumeMounts:
+            - name: home-volume
+              mountPath: /home/fermo
+      containers:
+        - name: rospo
+          image: ferama/fermo:latest
+          securityContext:
+            privileged: true
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/rospo
+            - name: secret-volume
+              mountPath: /etc/rospo/secret
+            - name: home-volume
+              mountPath: /home/fermo
+            # - name: docker-volume
+            #   mountPath: /var/lib/docker
+      serviceAccountName: rospo
+      volumes:
+        - name: config-volume
+          configMap:
+            name: rospo-config
+        - name: secret-volume
+          secret:
+            secretName: rospo-secret
+        - name: home-volume
+          persistentVolumeClaim:
+            claimName: home-volume
+        # - name: docker-volume
+        #   persistentVolumeClaim:
+        #     claimName: docker-volume
+
+      restartPolicy: Always

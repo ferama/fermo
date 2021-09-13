@@ -37,10 +37,10 @@ setup_user() {
     username=fermo
     password=fermo
 
-    groupadd docker
     adduser --gecos "" --disabled-password $username
     chpasswd <<<"$username:$password"
 
+    groupadd docker
     addgroup $username sudo
     addgroup $username docker
 }

@@ -27,7 +27,12 @@ do_install() {
 
     # other k8s resources
     $kubectl apply -f ./k8s/crb.yaml
-    $kubectl apply -f ./k8s/deployment.yaml
+
+    $kubectl apply -f ./k8s/volumes.yaml
+    $kubectl apply -f ./k8s/deployment-persistent.yaml
+
+    # $kubectl apply -f ./k8s/deployment.yaml
+
     $kubectl apply -f ./k8s/service.yaml
     $kubectl rollout restart deployment/rospo
 }
