@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
-# add docker dind
+# add docker dind. I'm not using dind as base image because it is apline
+# based and I want / need ubuntu as base
 COPY --from=docker:20.10.8-dind /usr/local/bin/ /usr/local/bin/
 # add rospo dev version
 COPY --from=ferama/rospo:dev /usr/local/bin/rospo /usr/local/bin/rospo
