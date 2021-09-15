@@ -40,6 +40,7 @@ setup_k8sutils() {
     mv /tmp/IBM_Cloud_CLI/ibmcloud /usr/local/bin
     su -c "ibmcloud plugin install kubernetes-service" $USERNAME
     su -c "ibmcloud plugin install container-registry" $USERNAME
+    su -c "ibmcloud plugin install cloud-databases" $USERNAME
 }
 
 setup_user() {
