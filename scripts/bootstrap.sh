@@ -18,6 +18,9 @@ setup_packages() {
         psmisc \
         python3-pip \
         openconnect \
+        iputils-ping \
+        netcat \
+        dnsutils
 
     # cleanup
     rm -r /var/lib/apt/lists /var/cache/apt/archives
