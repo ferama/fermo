@@ -14,7 +14,7 @@ api_url=${api_url%????}
 sed -i.bak -e "s|server: \(.*\)$|server: ${api_url}|g" $tmpdir/config
 
 # put certs as base64 into config
-    conf=$(
+conf=$(
     python3 << END
 import re, base64
 with open("$tmpdir/ca.crt", "r") as file:
