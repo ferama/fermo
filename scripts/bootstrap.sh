@@ -20,7 +20,8 @@ setup_packages() {
         openconnect \
         iputils-ping \
         netcat \
-        dnsutils
+        dnsutils \
+        bash-completion
 
     # cleanup
     rm -r /var/lib/apt/lists /var/cache/apt/archives
