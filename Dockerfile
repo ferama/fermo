@@ -11,12 +11,15 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 		ca-certificates \
         iptables \
+		curl \
 		openssl; \
     rm -r /var/lib/apt/lists /var/cache/apt/archives
 
 
 ENV DOCKER_TLS_CERTDIR=/certs
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
+
+RUN curl -fsSL https://get.docker.com | sh
 
 VOLUME /var/lib/docker
 
