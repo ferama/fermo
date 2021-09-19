@@ -7,6 +7,10 @@ PASSWORD=fermo
 
 export DEBIAN_FRONTEND=noninteractive
 
+setup_docker() {
+    curl -fsSL https://get.docker.com | sh
+}
+
 setup_packages() {
     apt update
     apt install -y \
@@ -61,8 +65,8 @@ setup_user() {
 
 
 ############
-
 setup_packages
+setup_docker
 setup_user
 setup_k8sutils
 
