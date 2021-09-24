@@ -1,7 +1,7 @@
 #! /bin/bash
 set -x
 
-IBMCLOUD_CLI=2.0.3
+IBMCLOUD_CLI=2.1.0
 USERNAME=fermo
 PASSWORD=fermo
 
