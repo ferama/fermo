@@ -14,9 +14,13 @@ spec:
       port: 22
       targetPort: 2222
     - protocol: TCP
-      name: rospo-rev
+      name: rospo-rev1
       port: 2244
       targetPort: 2244
+    - protocol: TCP
+      name: rospo-rev2
+      port: 2288
+      targetPort: 2288
     # wireguard
     # - protocol: UDP
     #   name: wireguard
