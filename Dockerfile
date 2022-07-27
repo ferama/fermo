@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # add rospo dev version
-COPY --from=ferama/rospo:dev /usr/local/bin/rospo /usr/local/bin/rospo
+COPY --from=ghcr.io/ferama/rospo:main /usr/local/bin/rospo /usr/local/bin/rospo
 
 # image extra binaries and utils
 COPY bin/* /usr/local/bin/
