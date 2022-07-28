@@ -2,6 +2,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 
+NS="rospo"
+
 do_install() {
     # create secrets
     list=""
@@ -91,10 +93,10 @@ done
 if ! $u_flag && ! $i_flag; then usage; fi
 if $u_flag && $i_flag; then usage; fi
 
-kubectl="kubectl"
+kubectl="kubectl -n $NS"
 if [ ! -z $kubeconfig ]
 then
-    kubectl="kubectl --kubeconfig=$kubeconfig"
+    kubectl="kubectl -n $NS --kubeconfig=$kubeconfig"
 fi
 
 if $i_flag; then

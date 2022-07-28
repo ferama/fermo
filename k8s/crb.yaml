@@ -1,13 +1,19 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: rospo
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: rospo
-  namespace: default
+  namespace: rospo
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: rospo-role
+  namespace: rospo
 rules:
 - apiGroups:
   - '*'
@@ -20,10 +26,11 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: rospo
+  namespace: rospo
 subjects:
 - kind: ServiceAccount
   name: rospo
-  namespace: default
+  namespace: rospo
 roleRef:
   kind: ClusterRole
   name: rospo-role
