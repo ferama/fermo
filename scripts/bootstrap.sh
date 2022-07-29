@@ -1,7 +1,6 @@
 #! /bin/bash
 set -x
 
-IBMCLOUD_CLI=2.1.0
 USERNAME=fermo
 PASSWORD=fermo
 
@@ -15,7 +14,6 @@ setup_packages() {
         git \
         byobu \
         psmisc \
-        python3-pip \
         openconnect \
         iputils-ping \
         netcat \
@@ -24,7 +22,6 @@ setup_packages() {
 
     # cleanup
     rm -r /var/lib/apt/lists /var/cache/apt/archives
-    pip install vpn-slice
 }
 
 setup_k8sutils() {
@@ -36,14 +33,6 @@ setup_k8sutils() {
 
     # helm
     curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-    
-    # ibmcloud
-    curl -fL https://download.clis.cloud.ibm.com/ibm-cloud-cli/${IBMCLOUD_CLI}/binaries/IBM_Cloud_CLI_${IBMCLOUD_CLI}_linux_amd64.tgz -o IBM_Cloud_CLI_${IBMCLOUD_CLI}_linux_amd64.tgz 
-    tar -zxf IBM_Cloud_CLI_${IBMCLOUD_CLI}_linux_amd64.tgz
-    mv /tmp/IBM_Cloud_CLI/ibmcloud /usr/local/bin
-    su -c "ibmcloud plugin install kubernetes-service" $USERNAME
-    su -c "ibmcloud plugin install container-registry" $USERNAME
-    su -c "ibmcloud plugin install cloud-databases" $USERNAME
 }
 
 setup_user() {
@@ -52,6 +41,7 @@ setup_user() {
     echo "source <(kubectl completion bash)" >> /etc/skel/.bashrc
 
     adduser --gecos "" --disabled-password $USERNAME
+    echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
     chpasswd <<<"$USERNAME:$PASSWORD"
 
     groupadd docker
