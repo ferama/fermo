@@ -28,7 +28,7 @@ spec:
               mountPath: /home/fermo
       containers:
         - name: rospo
-          image: ferama/fermo:latest
+          image: ghcr.io/ferama/fermo:main
           securityContext:
             privileged: true
           imagePullPolicy: Always
