@@ -5,6 +5,8 @@ cd $DIR
 NS="rospo"
 
 do_install() {
+    $kubectl create ns $NS
+    
     # create secrets
     list=""
     for file in ./config/secrets/*; do
